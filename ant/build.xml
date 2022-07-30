@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<project name="AlfMark" default="package" basedir="..">
+
+	<!-- Properties file to load -->
+	<property file="ant/build.properties" />
+
+	<!-- Increase build number -->
+	<propertyfile file="ant/build.properties">
+		<entry key="minor.number" type="int" operation="+" value="1" />
+	</propertyfile>
+
+	<!-- Internal properties definition -->
+	<property name="project.dir" value="./" />
+	<property name="build.dir" value="${project.dir}/build" />
+	<property name="package.dir" value="${project.dir}/dist" />
+	<property name="company.name" value="USH" />
+
+	<!-- One-JAR properties -->
+	<property name="one-jar.version" value="0.96" />
+	<property name="one-jar.dist.dir" value="${basedir}/ant" />
+
+	<!-- Name of jar archive -->
+	<property name="archive.name" value="AlfMark-${major.number}.${minor.number}.jar" />
+
+	<!-- Import One-JAR ant task -->
+	<import file="one-jar-ant-task.xml" />
+
+	<property name="lib.dir" value="${project.dir}/lib" />
+
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${project.dir}/src" destdir="${build.dir}" includeantruntime="no">
+			<classpath refid="compile.classpath" />
+		</javac>
+	</target>
+
+	<!-- Target package -->
+	<target name="package" depends="compile">
+
+		<!-- Create package dir -->
+		<mkdir dir="${package.dir}" />
+
+		<!-- Copy configuration files -->
+		<mkdir dir="${package.dir}/etc" />
+		<copy todir="${package.dir}/etc">
+			<fileset dir="${project.dir}/etc">
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+
+		<!-- Copy text files -->
+		<mkdir dir="${package.dir}/txt" />
+		<copy todir="${package.dir}/txt">
+			<fileset dir="${project.dir}/txt">
+				<include name="*.txt" />
+			</fileset>
+		</copy>
+
+		<!-- Copy license files -->
+		<mkdir dir="${package.dir}/license" />
+		<copy todir="${package.dir}/license">
+			<fileset dir="${project.dir}/license">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+
+		<!-- Set time stamp -->
+		<tstamp>
+			<format property="today" pattern="dd-MM-yyyy  HH:mm:ss" locale="it" />
+		</tstamp>
+		<!-- Update manifest -->
+		<manifest file="ant/manifest.mf" mode="update">
+			<section name="common">
+				<attribute name="Implementation-Version" value="${major.number}.${minor.number}" />
+				<attribute name="Implementation-Vendor" value="USH" />
+				<attribute name="Built-By" value="saidone" />
+				<attribute name="Build-Jdk" value="${java.version}" />
+				<attribute name="Build-Date" value="${today}" />
+			</section>
+		</manifest>
+
+		<one-jar destfile="${package.dir}/${archive.name}" manifest="ant/manifest.mf">
+			<main>
+				<!-- Construct main.jar from classes and source code -->
+				<fileset dir="${build.dir}" />
+			</main>
+			<lib>
+				<fileset file="${lib.dir}/*.jar" />
+				<fileset file="${lib.dir}/opencmis/*.jar" />
+			</lib>
+		</one-jar>
+
+		<echo>
+			Now you can run the program using 
+			$ java -jar ${archive.name}
+		</echo>
+
+	</target>
+
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build.dir}" />
+		<delete dir="${package.dir}" />
+	</target>
+
+</project>

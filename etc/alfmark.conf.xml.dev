@@ -1,0 +1,80 @@
+<config>
+	<!-- IP address of Alfresco server -->
+	<ip>192.168.1.227</ip>
+	<!-- TCP port -->
+	<port>8080</port>
+	<!-- credentials to use (MUST be able to write in company_home!) -->
+	<alfrescoUser>admin</alfrescoUser>
+	<alfrescoPassword>admin</alfrescoPassword>
+	<!-- service URL -->
+	<serviceUrl>/alfresco/service</serviceUrl>
+	<!-- CMIS entry point -->
+	<cmisEntryPoint>/alfresco/service/cmis</cmisEntryPoint>
+	<!-- folder within tests are executed, relative to company_home -->
+	<testFolderPath>/tests2/AlfMark</testFolderPath>
+	<!-- create test folder if not exist -->
+	<createFolderPathIfNotExist>true</createFolderPathIfNotExist>
+	<!-- sleep between single tests (milliseconds) -->
+	<sleepBetweenTests>1000</sleepBetweenTests>
+	<!-- total execution time that give a score of 1.00 AlfMarks 2011 -->
+	<timeExpected>1060000</timeExpected>
+	<cleanUpOnExit>false</cleanUpOnExit>
+	<tests>
+		<!-- this test aims to guess the optimal number of threads to use -->
+		<!-- do not use for now, experimental and unfinished, will just perform 
+			the test and exit -->
+		<!-- <createDocumentsThread> -->
+		<!-- <name>ThreadsTest</name> -->
+		<!-- maximum number of threads to use -->
+		<!-- <threads>32</threads> -->
+		<!-- number of documents to create -->
+		<!-- <numberOfDocuments>128</numberOfDocuments> -->
+		<!-- size of each document (KiB) -->
+		<!-- <size>10</size> -->
+		<!-- content type -->
+		<!-- 0 -> random binary content -->
+		<!-- 1 -> all zeroes binary content -->
+		<!-- 2 -> randomized indexable text file -->
+		<!-- <contentType>0</contentType> -->
+		<!-- </createDocumentsThread> -->
+		<createDocuments>
+			<!-- name of the test -->
+			<name>4 threads create, 10KiB, 10 docs, random content</name>
+			<!-- number of threads to use -->
+			<threads>4</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>10</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>10</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>0</contentType>
+			<createTestFolder>false</createTestFolder>
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<addAspects>
+			<name>2 threads, 10 docs, 5 aspects</name>
+			<threads>2</threads>
+			<numberOfDocuments>10</numberOfDocuments>
+			<aspects>
+				<aspect name="taggable" />
+				<aspect name="generalclassifiable" />
+				<aspect name="complianceable" />
+				<aspect name="summarizable" />
+				<aspect name="emailed" />
+			</aspects>
+		</addAspects>
+		<!-- NOTE: number of documents to delete MUST not exceed those created, 
+			or some deletion tests will be skipped -->
+		<deleteDocuments>
+			<!-- name of the test -->
+			<name>2 threads delete, 10 docs</name>
+			<!-- number of threads to use -->
+			<threads>2</threads>
+			<!-- number of documents to delete -->
+			<numberOfDocuments>10</numberOfDocuments>
+		</deleteDocuments>
+	</tests>
+</config>

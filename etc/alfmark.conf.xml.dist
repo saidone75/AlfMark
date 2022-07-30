@@ -1,0 +1,262 @@
+<config>
+	<!-- IP address of Alfresco server -->
+	<ip>192.168.1.227</ip>
+	<!-- TCP port -->
+	<port>8080</port>
+	<!-- credentials to use (MUST be able to write in company_home!) -->
+	<alfrescoUser>admin</alfrescoUser>
+	<alfrescoPassword>admin</alfrescoPassword>
+	<!-- service URL -->
+	<serviceUrl>/alfresco/service</serviceUrl>
+	<!-- CMIS entry point -->
+	<cmisEntryPoint>/alfresco/service/cmis</cmisEntryPoint>
+	<!-- folder within tests are executed, relative to company_home -->
+	<testFolderPath>/AlfMark</testFolderPath>
+	<!-- create test folder if not exist -->
+	<createFolderPathIfNotExist>true</createFolderPathIfNotExist>
+	<!-- sleep between single tests (milliseconds) -->
+	<sleepBetweenTests>10000</sleepBetweenTests>
+	<!-- total execution time that give a score of 1.00 AlfMarks 2011 -->
+	<timeExpected>1060000</timeExpected>
+	<cleanUpOnExit>true</cleanUpOnExit>
+	<tests>
+		<!-- this test aims to guess the optimal number of threads to use -->
+		<!-- do not use for now, experimental and unfinished, will just perform 
+			the test and exit -->
+		<!-- <createDocumentsThread> -->
+		<!-- <name>ThreadsTest</name> -->
+		<!-- maximum number of threads to use -->
+		<!-- <threads>32</threads> -->
+		<!-- number of documents to create -->
+		<!-- <numberOfDocuments>128</numberOfDocuments> -->
+		<!-- size of each document (KiB) -->
+		<!-- <size>10</size> -->
+		<!-- content type -->
+		<!-- 0 -> random binary content -->
+		<!-- 1 -> all zeroes binary content -->
+		<!-- 2 -> randomized indexable text file -->
+		<!-- <contentType>0</contentType> -->
+		<!-- </createDocumentsThread> -->
+		<createDocuments>
+			<!-- name of the test -->
+			<name>One thread create, 100KiB, 100 docs, random content</name>
+			<!-- number of threads to use -->
+			<threads>1</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>100</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>100</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>0</contentType>
+			<!-- create a separate folder for each single test -->
+			<createTestFolder>true</createTestFolder>
+			<!-- overwrite existing files -->
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<createDocuments>
+			<!-- name of the test -->
+			<name>One thread create, 100KiB, 100 docs, all zero content</name>
+			<!-- number of threads to use -->
+			<threads>1</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>100</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>100</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>1</contentType>
+			<!-- create a separate folder for each single test -->
+			<createTestFolder>true</createTestFolder>
+			<!-- overwrite existing files -->
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<createDocuments>
+			<!-- name of the test -->
+			<name>One thread create, 100KiB, 100 docs, random text</name>
+			<!-- number of threads to use -->
+			<threads>1</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>100</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>100</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>2</contentType>
+			<!-- create a separate folder for each single test -->
+			<createTestFolder>true</createTestFolder>
+			<!-- overwrite existing files -->
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<createDocuments>
+			<!-- name of the test -->
+			<name>16 threads create, 10KiB, 100 docs, random content</name>
+			<!-- number of threads to use -->
+			<threads>16</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>100</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>10</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>0</contentType>
+			<!-- create a separate folder for each single test -->
+			<createTestFolder>true</createTestFolder>
+			<!-- overwrite existing files -->
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<createDocuments>
+			<!-- name of the test -->
+			<name>16 threads create, 10KiB, 100 docs, all zero content</name>
+			<!-- number of threads to use -->
+			<threads>16</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>100</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>10</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>1</contentType>
+			<!-- create a separate folder for each single test -->
+			<createTestFolder>true</createTestFolder>
+			<!-- overwrite existing files -->
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<createDocuments>
+			<!-- name of the test -->
+			<name>16 threads create, 10KiB, 100 docs, random text</name>
+			<!-- number of threads to use -->
+			<threads>16</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>100</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>10</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>2</contentType>
+			<!-- create a separate folder for each single test -->
+			<createTestFolder>true</createTestFolder>
+			<!-- overwrite existing files -->
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<createDocuments>
+			<!-- name of the test -->
+			<name>64 threads create, 100KiB, 100 docs, random content</name>
+			<!-- number of threads to use -->
+			<threads>64</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>100</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>100</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>0</contentType>
+			<!-- create a separate folder for each single test -->
+			<createTestFolder>true</createTestFolder>
+			<!-- overwrite existing files -->
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<createDocuments>
+			<!-- name of the test -->
+			<name>64 threads create, 100KiB, 100 docs, all zero content</name>
+			<!-- number of threads to use -->
+			<threads>64</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>100</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>100</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>1</contentType>
+			<!-- create a separate folder for each single test -->
+			<createTestFolder>true</createTestFolder>
+			<!-- overwrite existing files -->
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<createDocuments>
+			<!-- name of the test -->
+			<name>64 threads create, 100KiB, 100 docs, random text</name>
+			<!-- number of threads to use -->
+			<threads>64</threads>
+			<!-- number of documents to create -->
+			<numberOfDocuments>100</numberOfDocuments>
+			<!-- size of each document (KiB) -->
+			<size>100</size>
+			<!-- content type -->
+			<!-- 0 -> random binary content -->
+			<!-- 1 -> all zeroes binary content -->
+			<!-- 2 -> randomized indexable text file -->
+			<contentType>2</contentType>
+			<!-- create a separate folder for each single test -->
+			<createTestFolder>true</createTestFolder>
+			<!-- overwrite existing files -->
+			<overwrite>true</overwrite>
+		</createDocuments>
+		<addAspects>
+			<name>8 threads, 100 docs, 5 aspects</name>
+			<threads>8</threads>
+			<numberOfDocuments>100</numberOfDocuments>
+			<aspects>
+				<aspect name="taggable" />
+				<aspect name="generalclassifiable" />
+				<aspect name="complianceable" />
+				<aspect name="summarizable" />
+				<aspect name="emailed" />
+			</aspects>
+		</addAspects>
+		<addAspects>
+			<name>64 threads, 100 docs, 5 aspects</name>
+			<threads>8</threads>
+			<numberOfDocuments>100</numberOfDocuments>
+			<aspects>
+				<aspect name="taggable" />
+				<aspect name="generalclassifiable" />
+				<aspect name="complianceable" />
+				<aspect name="summarizable" />
+				<aspect name="emailed" />
+			</aspects>
+		</addAspects>
+		<!-- NOTE: number of documents to delete MUST not exceed those created, 
+			or some deletion tests will be skipped -->
+		<deleteDocuments>
+			<!-- name of the test -->
+			<name>One thread delete, 100 docs</name>
+			<!-- number of threads to use -->
+			<threads>1</threads>
+			<!-- number of documents to delete -->
+			<numberOfDocuments>100</numberOfDocuments>
+		</deleteDocuments>
+		<deleteDocuments>
+			<!-- name of the test -->
+			<name>16 threads delete, 100 docs</name>
+			<!-- number of threads to use -->
+			<threads>16</threads>
+			<!-- number of documents to delete -->
+			<numberOfDocuments>100</numberOfDocuments>
+		</deleteDocuments>
+		<deleteDocuments>
+			<!-- name of the test -->
+			<name>64 threads delete, 100 docs</name>
+			<!-- number of threads to use -->
+			<threads>64</threads>
+			<!-- number of documents to delete -->
+			<numberOfDocuments>100</numberOfDocuments>
+		</deleteDocuments>
+	</tests>
+</config>
